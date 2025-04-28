@@ -1,3 +1,6 @@
+# import update function from local dir
+from update import update_model
+
 from flask import Flask, render_template, request
 from wtforms import Form, TextAreaField, validators
 import pickle
@@ -72,5 +75,11 @@ def feedback():
     sqlite_entry(db, review, y)
     return render_template('thanks.html')
 
+
+if __name__ == '__main__':
+    clf = update_model(db_path=db,
+                       model=clf,
+                       batch_size=10000)
+    
 # if __name__ == '__main__':
 #     app.run(debug=True)
